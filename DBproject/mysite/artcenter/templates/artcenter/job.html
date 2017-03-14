@@ -1,0 +1,138 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/job.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/fonts.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/mystyle.css' %}" />
+<!--<img src="{% static "artcenter/banner.jpg" %}" alt="My image"/>-->
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : SimpleWork 
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140225
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="job.css" rel="stylesheet" type="text/css" media="all" />
+<link href="employee.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+
+		<div id="logo">
+			<h1><a href="http://arts.ntu.edu.tw/">臺大藝文中心</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="http://localhost:8000/art_center/" accesskey="1" title="">Homepage</a></li>
+				<li><a href="http://localhost:8000/art_center/program/" accesskey="2" title="">Program</a></li>
+				<li><a href="http://localhost:8000/art_center/employee/" accesskey="3" title="">Employee</a></li>
+				
+				<li class="current_page_item"><a href="http://localhost:8000/art_center/job/" accesskey="4" title="">Job</a></li>
+				<li><a href="http://localhost:8000/art_center/equipment/" accesskey="5" title="">Equipment</a></li>
+				<li><a href="http://localhost:8000/admin/login/?next=/admin/" accesskey="6" title="">Log In</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="header-featured">
+		<div id="banner-wrapper">
+			<div id="banner" class="container">
+				<h2>JOB</h2>
+				<p>
+				For those we love,<br>
+				For those we cherish,<br>
+				Passion makes perfect.<br>
+				We are here serving and telling stories.
+				 </p>
+				<a href="#detail" class="button">see more</a> </div>
+				<!--  用 More button to roll down -->
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="page" class="container">
+		<div id="content">
+		<a name = "detail">
+			<div class="title">
+				<h2>職務列表</h2>
+				
+				<span class="byline">Job List</span> 
+
+				</div>
+
+			<!--<p><img src="banner.jpg" alt="" class="image image-full" /> </p>-->
+			<p>
+				{% if job_list %}
+				    <ul class = "style1">
+				    {% for Job in job_list %}
+				        <li class = "first ">
+				        	<p><a href="/art_center/job/{{Job.job_type}}/#detail">{{Job.job_type}}</a></p>
+				        </li>
+				    {% endfor %}
+				    </ul>
+				{% else %}
+				    <p>No program are available.</p>
+				{% endif %}
+			</p>
+		</a>
+		</div>
+		<!--<div id="sidebar">
+			<ul class="style1">
+				<h2>最新消息</h2>
+				<li class="first">
+					<h3>Amet sed volutpat mauris</h3>
+					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
+				</li>
+				<li>
+					<h3>Sagittis diam dolor sit amet</h3>
+					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
+				</li>
+				<li>
+					<h3>Maecenas ac quam risus</h3>
+					<p><a href="#">In posuere eleifend odio. Quisque semper augue mattis wisi. Pellentesque viverra vulputate enim. Aliquam erat volutpat.</a></p>
+				</li>
+			</ul>
+			<div id="stwo-col">
+				<div class="sbox1">
+					<h2>Etiam rhoncus</h2>
+					<ul class="style2">
+						<li><a href="#">Semper quis egetmi dolore</a></li>
+						<li><a href="#">Quam turpis feugiat dolor</a></li>
+						<li><a href="#">Amet ornare hendrerit lectus</a></li>
+						<li><a href="#">Quam turpis feugiat dolor</a></li>
+					</ul>
+				</div>
+				<div class="sbox2">
+					<h2>Integer gravida</h2>
+					<ul class="style2">
+						<li><a href="#">Semper quis egetmi dolore</a></li>
+						<li><a href="#">Quam turpis feugiat dolor</a></li>
+						<li><a href="#">Consequat lorem phasellus</a></li>
+						<li><a href="#">Amet turpis feugiat amet</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>-->
+	</div>
+</div>
+<div id="copyright" class="container">
+	<p>&copy; Why be normal? We are now standing here, making things happen. The most exciting episode is the one that amazes you.<br> Design by | Suki Wang | Jenny Hung | Andre Chang</a>.</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,192 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+{% load static %}
+
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/program_detail_lala.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/fonts.css' %}" />
+<link rel="stylesheet" type="text/css" href="{% static 'artcenter/mystyle.css' %}" />
+<!--<img src="{% static "artcenter/banner.jpg" %}" alt="My image"/>-->
+<!--
+Design by TEMPLATED
+http://templated.co
+Released for free under the Creative Commons Attribution License
+
+Name       : SimpleWork
+Description: A two-column, fixed-width design with dark color scheme.
+Version    : 1.0
+Released   : 20140225
+
+-->
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<meta name="keywords" content="" />
+<meta name="description" content="" />
+<link href="mystyle.css" rel="stylesheet" type="text/css" media="all" />
+<link href="program_detail.css" rel="stylesheet" type="text/css" media="all" />
+<link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+
+<!--[if IE 6]><link href="default_ie6.css" rel="stylesheet" type="text/css" /><![endif]-->
+
+</head>
+<body>
+<div id="header-wrapper">
+	<div id="header" class="container">
+
+		<div id="logo">
+			<h1><a href="http://arts.ntu.edu.tw/">臺大藝文中心</a></h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li><a href="http://localhost:8000/art_center/" accesskey="1" title="">Homepage</a></li>
+				<li class="current_page_item"><a href="" accesskey="2" title="">Program</a></li>
+				<li><a href="http://localhost:8000/art_center/employee/" accesskey="3" title="">Employee</a></li>
+
+				<li><a href="http://localhost:8000/art_center/job/" accesskey="4" title="">Job</a></li>
+				<li><a href="http://localhost:8000/art_center/equipment/" accesskey="5" title="">Equipment</a></li>
+				<li><a href="http://localhost:8000/admin/login/?next=/admin/" accesskey="6" title="">Log In</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="header-featured">
+		<div id="banner-wrapper">
+			<div id="banner" class="container">
+				<h2>PROGRAM</h2>
+				<p>
+				You are beautiful.<br>
+				We are graceful.<br>
+				Once, light shows up.<br>
+				The show goes on. We dream so long.
+				 </p>
+				<a href="#detail" class="button">See more</a> </div>
+				<!--  用 More button to roll down -->
+		</div>
+	</div>
+</div>
+<div id="wrapper">
+	<div id="page" class="container">
+		<a name = "detail">
+		<div id="content">
+			<div class="title">
+				<h2>節目 : {{program_entry_detail.title}} </h2>
+				<span class="byline"> </span>
+			</div>
+
+			{% if program_entry_detail.program_photo %}
+			<p><img src='{{program_entry_detail.program_photo.url}}' alt="" class="image image-full"/></p>
+			{% else %}
+			<p>no picture</p>
+			{% endif %}
+		</div>
+		</a>
+
+		<div id="sidebar">
+			<ul class="style1">
+				<h4>節目資料</h4>
+				<li>
+					<h3>Type</h3>
+					<p class = "p1">{{program_entry_detail.program_type}}</p>
+				</li>
+				<li>
+					<h3>Cost</h3>
+					<p class = "p1">{{program_entry_detail.cost}}</p>
+				</li>
+				<li>
+					<h3>Audiance number</h3>
+					<p class = "p1">{{program_entry_detail.audience_number}}</p>
+				</li>
+				<li>
+					<h3>Time information</h3>
+					{% if program_time_detail %}
+						{% for Time_of_program in program_time_detail %}
+						<p class ="p2">date : {{Time_of_program.date}}<tab>
+						start at : {{Time_of_program.start_time}}<tab>
+						duratin : {{Time_of_program.duration}}
+						</p>
+						{% endfor %}
+					{% else %}
+					<p> No information </p>
+					{% endif %}
+				</li>
+				<li>
+					<h3>Ticket information</h3>
+					{% for Ticket in program_ticket_detail %}
+				        <p class = "p2">Type: {{Ticket.ticket_type}}<tab>
+						Price: {{Ticket.price}}<tab>
+						Sell amount: {{Ticket.amount}}</p>
+				    {% endfor %}
+				</li>
+				<li>
+					<h3>Worker</h3>
+				
+					
+			        	<p class = "p2">
+			        	{% for Works_on in program_work_on_detail %}
+							<a href="/art_center/employee/{{Works_on.employee.id}}/#detail">{{Works_on.employee.name}}</a>({{Works_on.job_type}} , {{Works_on.working_hours}}),&nbsp&nbsp&nbsp&nbsp
+						{% endfor %}
+						</p>
+				    
+				
+				</li>
+				<li>
+					<h3>Use Equipment</h3>
+					
+			        	<p class = "p2">
+			        	{% for Use in program_use_detail %}
+							<a href="/art_center/equipment/{{Use.equipment.id}}/#detail">{{Use.equipment.equipment_type}}</a>	({{Use.equipment.model}})&nbsp&nbsp&nbsp
+						{% endfor %}
+						</p>
+			    	
+					
+				</li>
+				<li>
+					<h3>Questionnaire List</h3>
+					<p class = "p2"> <a href="/art_center/program/{{program_entry_detail.id}}/questionnaire/">list</a></p>
+				</li>
+				<li>
+					<h3>Performer</h3>
+					{% for Perform in program_perform_detail %}
+					<p class = "p2"> {{Perform.performer.name}}<tab>
+						({{Perform.performer.email}},{{Perform.performer.phone_number}})
+					</p>
+					{% endfor %}
+				</li>
+			</ul>
+
+			<div id="stwo-col">
+				<div class="sbox1">
+
+					<ul>
+					<br><br>
+						<li class = "current_page_item1"><a href="http://localhost:8000/art_center/program/#detail">回到節目列表</a></li>
+					</ul>
+
+					<!--<h2>回到員工列表</h2>
+					<ul class="style2">
+						<li><a href="http://localhost:8000/art_center/program">GO_back</a></li>
+					</ul>-->
+				</div>
+				<div class="sbox2">
+					<ul>
+					<br><br>
+						<li class = "current_page_item2"><a href="javascript:history.back()">回到上一頁</a></li>
+					</ul>
+
+					<!--<h2>藝文資訊</h2>
+					<ul class="style2">
+						<li>其他藝文資訊</li>
+						<li>雅頌坊藝文資訊</li>
+						<li>好站連結</li>
+					</ul>-->
+				</div>
+			</div>
+		</div>
+
+	</div>
+</div>
+<div id="copyright" class="container">
+	<p>&copy; Why be normal? We are now standing here, making things happen. The most exciting episode is the one that amazes you.<br> Design by | Suki Wang | Jenny Hung | Andre Chang</a>.</p>
+</div>
+</body>
+</html>
